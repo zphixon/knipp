@@ -1,4 +1,3 @@
-
 extern crate clap;
 extern crate knipp;
 
@@ -37,13 +36,12 @@ fn main() {
              .takes_value(true))
         .get_matches();
 
-    let len = matches.value_of("length")
-        .map(|n| {
-            n.parse::<usize>().unwrap_or_else(|n| {
-                eprintln!("error: Length must be number: {}", n);
-                std::process::exit(1);
-            })
-        });
+    let len = matches.value_of("length").map(|n| {
+        n.parse::<usize>().unwrap_or_else(|n| {
+            eprintln!("error: Length must be number: {}", n);
+            std::process::exit(1);
+        })
+    });
 
     let fmts = if let Some(format) = matches.value_of("format") {
         let raw_fmts: Vec<String> = format
@@ -80,13 +78,12 @@ fn main() {
         }
     };
 
-    let num = matches.value_of("number")
-        .map_or(1, |n| {
-            n.parse::<usize>().unwrap_or_else(|n| {
-                eprintln!("error: Number must be number: {}", n);
-                std::process::exit(1);
-            })
-        });
+    let num = matches.value_of("number").map_or(1, |n| {
+        n.parse::<usize>().unwrap_or_else(|n| {
+            eprintln!("error: Number must be number: {}", n);
+            std::process::exit(1);
+        })
+    });
 
     if matches.is_present("random") {
         for mut word in knipp::random_sequences(num) {
@@ -104,4 +101,3 @@ fn main() {
         }
     }
 }
-

@@ -1,14 +1,12 @@
-
-use ::word::{Word, LetterKind};
+use word::{LetterKind, Word};
 
 pub static VOWELS: [char; 6] = ['a', 'e', 'i', 'o', 'u', 'y'];
 
-pub static CONSONANTS: [char; 19] = ['b', 'c', 'd', 'f', 'g',
-                                     'h', 'j', 'k', 'l', 'm',
-                                     'n', 'p', 'q', 'r', 's',
-                                     't', 'v', 'w', 'x'];
+pub static CONSONANTS: [char; 19] = [
+    'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x'
+];
 
-use ::rand::distributions::{Range, Sample};
+use rand::distributions::{Range, Sample};
 
 pub fn gen_consonant() -> u8 {
     let mut range = Range::new(0, CONSONANTS.len());
@@ -35,12 +33,8 @@ pub fn of_kind(kind: Vec<LetterKind>) -> Word {
 
     for l in kind.iter() {
         data.push(match *l {
-            LetterKind::Consonant => {
-                gen_consonant() as char
-            },
-            LetterKind::Vowel => {
-                gen_vowel() as char
-            }
+            LetterKind::Consonant => gen_consonant() as char,
+            LetterKind::Vowel => gen_vowel() as char,
         });
     }
 
@@ -49,11 +43,12 @@ pub fn of_kind(kind: Vec<LetterKind>) -> Word {
 
 pub fn default_formats() -> Vec<Vec<LetterKind>> {
     use LetterKind::{Consonant, Vowel};
-    vec![vec![Consonant, Vowel, Consonant, Consonant, Vowel],
-         vec![Consonant, Consonant, Vowel, Consonant, Consonant],
-         vec![Consonant, Consonant, Vowel, Consonant, Vowel],
-         vec![Vowel, Consonant, Vowel, Consonant, Consonant],
-         vec![Vowel, Consonant, Consonant, Vowel, Vowel],
-         vec![Vowel, Consonant, Consonant, Vowel, Consonant]]
+    vec![
+        vec![Consonant, Vowel, Consonant, Consonant, Vowel],
+        vec![Consonant, Consonant, Vowel, Consonant, Consonant],
+        vec![Consonant, Consonant, Vowel, Consonant, Vowel],
+        vec![Vowel, Consonant, Vowel, Consonant, Consonant],
+        vec![Vowel, Consonant, Consonant, Vowel, Vowel],
+        vec![Vowel, Consonant, Consonant, Vowel, Consonant],
+    ]
 }
-

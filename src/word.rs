@@ -1,6 +1,5 @@
-
-use ::std::fmt;
-use ::gen::{of_kind, sequence};
+use std::fmt;
+use gen::{of_kind, sequence};
 
 use LetterKind::Consonant;
 use LetterKind::Vowel;
@@ -49,4 +48,3 @@ impl ::rand::Rand for Word {
         of_kind(r.choose(&::gen::default_formats()).unwrap().to_vec())
     }
 }
-
