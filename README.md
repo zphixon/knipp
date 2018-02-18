@@ -11,7 +11,7 @@ vtapu
 
 ```
 USAGE:
-    knipp.exe [FLAGS] [OPTIONS]
+    knipp [FLAGS] [OPTIONS]
 
 FLAGS:
     -h, --help       Prints help information
@@ -21,6 +21,19 @@ FLAGS:
 OPTIONS:
     -f, --format <format>    Specify formats separated by semicolon
     -n, --number <number>    Number of words to generate
+    -l, --length <number>    Generate with a specific length
+```
+
+## e.g.
+
+```
+$ knipp -f cvcc
+bork
+$ knipp -f 'vccvc;ccvcvv;vc' -n 4
+ur
+ebpuh
+nxcei
+ig
 ```
 
 ## Disclaimer
