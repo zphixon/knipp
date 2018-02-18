@@ -20,8 +20,8 @@ FLAGS:
 
 OPTIONS:
     -f, --format <format>    Specify formats separated by semicolon
+    -l, --length <length>    Generate with a specific length
     -n, --number <number>    Number of words to generate
-    -l, --length <number>    Generate with a specific length
 ```
 
 ## e.g.
