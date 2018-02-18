@@ -5,7 +5,7 @@ use ::gen::{of_kind, sequence};
 use LetterKind::Consonant;
 use LetterKind::Vowel;
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum LetterKind {
     Consonant,
     Vowel,
