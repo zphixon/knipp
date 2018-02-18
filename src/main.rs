@@ -13,6 +13,7 @@ fn main() {
              .short("f")
              .long("format")
              .help("Specify formats separated by semicolon")
+             .conflicts_with_all(&["random", "length"])
              .takes_value(true))
         .arg(Arg::with_name("number")
              .short("n")
@@ -23,11 +24,25 @@ fn main() {
              .short("r")
              .long("random")
              .help("Use a completely random sequence"))
+        .arg(Arg::with_name("length")
+             .short("l")
+             .long("length")
+             .help("Generate with a specific length")
+             .takes_value(true))
         .get_matches();
+
+    let len = matches.value_of("length")
+        .map(|n| {
+            n.parse::<usize>().unwrap_or_else(|n| {
+                eprintln!("error: Length must be number: {}", n);
+                std::process::exit(1);
+            })
+        });
 
     let fmts = if let Some(format) = matches.value_of("format") {
         let raw_fmts: Vec<String> = format
             .trim_matches('\'')
+            .trim_matches('\"')
             .split(";")
             .filter(|&s| s != "")
             .map(|s| s.to_lowercase())
@@ -52,7 +67,11 @@ fn main() {
 
         fmts
     } else {
-        knipp::default_formats()
+        if let Some(len) = len {
+            vec![knipp::gen::sequence(len)]
+        } else {
+            knipp::default_formats()
+        }
     };
 
     let num = matches.value_of("number")
@@ -63,8 +82,20 @@ fn main() {
             })
         });
 
-    for word in knipp::with_sequences(num, fmts) {
-        println!("{}", word);
+    if matches.is_present("random") {
+        for mut word in knipp::random_sequences(num) {
+            if let Some(len) = len {
+                word.change_len(len);
+            }
+            println!("{}", word);
+        }
+    } else {
+        for mut word in knipp::with_sequences(num, fmts) {
+            if let Some(len) = len {
+                word.change_len(len);
+            }
+            println!("{}", word);
+        }
     }
 }
 
