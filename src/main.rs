@@ -13,6 +13,9 @@ fn main() {
              .short("f")
              .long("format")
              .help("Specify formats separated by semicolon")
+             .long_help("You can specify the format of a random word by using a combination of 'c' and\n\
+                         'v' to mean consonants and vowels. These are separated by semicolons.\n\
+                         This option is incompatible with --random and --length.")
              .conflicts_with_all(&["random", "length"])
              .takes_value(true))
         .arg(Arg::with_name("number")
@@ -28,6 +31,9 @@ fn main() {
              .short("l")
              .long("length")
              .help("Generate with a specific length")
+             .long_help("Generate a word with the given length.\n\
+                         Used with --random, the pattern will change for each word.\n\
+                         Used without random, the pattern will be the same.")
              .takes_value(true))
         .get_matches();
 
