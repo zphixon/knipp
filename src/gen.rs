@@ -3,21 +3,21 @@ use ::word::{Word, LetterKind};
 
 pub static VOWELS: [char; 6] = ['a', 'e', 'i', 'o', 'u', 'y'];
 
-pub static CONSONANTS: [char; 21] = ['a', 'b', 'c', 'd', 'f', 'g',
-                                     'h', 'j', 'k', 'l', 'm', 'n',
-                                     'o', 'p', 'q', 'r', 's', 't',
-                                     'v', 'w', 'x'];
+pub static CONSONANTS: [char; 19] = ['b', 'c', 'd', 'f', 'g',
+                                     'h', 'j', 'k', 'l', 'm',
+                                     'n', 'p', 'q', 'r', 's',
+                                     't', 'v', 'w', 'x'];
 
 use ::rand::distributions::{Range, Sample};
 
 pub fn gen_consonant() -> u8 {
-    let mut range = Range::new(0, 21);
+    let mut range = Range::new(0, CONSONANTS.len());
     let mut rng = ::rand::thread_rng();
     CONSONANTS[range.sample(&mut rng)] as u8
 }
 
 pub fn gen_vowel() -> u8 {
-    let mut range = Range::new(0, 6);
+    let mut range = Range::new(0, VOWELS.len());
     let mut rng = ::rand::thread_rng();
     VOWELS[range.sample(&mut rng)] as u8
 }
