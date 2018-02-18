@@ -7,7 +7,7 @@ use clap::{App, Arg};
 fn main() {
     let matches = App::new("knipp")
         .version("0.1")
-        .about("Generate a random word")
+        .about("Generate some words.")
         .author("Zack H <zackh@firemail.cc>")
         .arg(Arg::with_name("format")
              .short("f")
