@@ -2,8 +2,8 @@ use word::{LetterKind, Word};
 
 pub static VOWELS: [char; 6] = ['a', 'e', 'i', 'o', 'u', 'y'];
 
-pub static CONSONANTS: [char; 19] = [
-    'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x'
+pub static CONSONANTS: [char; 20] = [
+    'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'
 ];
 
 use rand::distributions::{Range, Sample};
